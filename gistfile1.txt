@@ -1,1 +1,47 @@
-TODO: Add installation guide
+Hello everyone this being my first attempt on writing a blog (I'm not sure whether I should even call it as blog or not :P), so incase if there're any issues please feel free to comment and I'll try to improve.
+
+The reason for writing this blog is I've tried finding it on google to compile/build OpenCV and running OpenCV codes without any IDE on Windows platform but didn't find any exact step by step guide in one place. So the steps I'm writing are found by trying out different things and listing the points which worked out for me.
+
+NOTE : I've tried on Linux too (By following various resources on Google. One which I've found quite helpful is at - http://www.jayrambhia.com) and if you wish to run on Linux that's great. But for those with Windows the steps here may help :)
+
+I'll write it in a plaintext format for now and based on its usefulness will upload a version which would include snapshot of each step described here.
+
+So let's begin :)
+
+Prerequisite : I assume you've following installers already available and installed
+1) MinGW - (Download link - http://www.mingw.org/category/wiki/download)
+2) CMake - (Download link - https://cmake.org/download/) (Again seems quite obvious but it's easy to copy paste the links :P)
+3) OpenCV - Obviously ;) I'm using 2.4.13 (Download link - https://sourceforge.net/projects/opencvlibrary/files/opencv-win/2.4.13/)
+4) GitBash (Optional - But I've found it quite useful for my development. Download link - https://git-scm.com/downloads)
+
+Steps to Compile OpenCV:
+1) Start CMake-GUI tool and specify source code path as /path/to/opencv-ver/sources/
+2) Specify path for building the libraries as  /path/to/opencv-ver/release (Generally this path is not available better to create a  directory in path where opencv is extracted.)
+3) Click on Configure. Once configure is complete it'll show various options in red. Just deselect/select the options which applies to you.(However for me it works generally with unchecking the ENABLE_PRECOMPILED_HEADERS option you can try the same.)
+4) Again click on Configure and wait to finish.
+5) Then click on Generate.
+
+Once this is done you should have your release folder (specified in step 2 above) having various files.
+Now navigate to release folder in GitBash (or Cmd through which you can run mingw32-make).
+NOTE: To run below step successfully you may have to modify commctrl.h file (See answer in https://stackoverflow.com/questions/39461337/compiling-opencv-2-4-13-with-cmake-and-mingw)
+[Path for commctrl.h path/to/MinGW/include]
+
+Continuing:
+6) In the release folder run mingw32-make and wait to finish
+7) If the above step ran successfully (Let's hope :P) run mingw32-make install.
+
+If everything went without errors congratulations! 
+You were able to build OpenCV successfully :).
+
+Compiling and Running some sample program:
+1) Before running some sample program you will have to copy all necessary headers from path/to/opencv/release/install/include to path/to/MinGW/include and all necessary libraries from /path/to/opencv/release/install/x86/lib/ to path/to/MinGW/lib
+2) Now go to /path/to/opencv/sources/samples/cpp/ through Git Bash and run following command
+ g++ -o opencv_version opencv_version.cpp -I /c/MinGW/include/ -llibopencv_core2413 -llibopencv_highgui2413 -llibopencv_imgproc2413
+ It should compile successfully.
+3) Run ./opencv_version and it'll display OpenCV installed version in stdout :)
+
+Now you can try other programs and compile it using above command just by modifying/adding libraries as needed during linking.
+Do try and let me know if there're issues also if you come across any better way feel free to share.
+
+Happy Coding :)
+
