@@ -45,3 +45,4 @@ Do try and let me know if there're issues also if you come across any better way
 
 Happy Coding :)
 
+#OpenCV #CMake #MinGW #Cross-compiling #How-to #BeginnerFriendly #Windows
